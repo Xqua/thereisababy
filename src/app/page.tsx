@@ -74,8 +74,8 @@ export default function Home() {
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:flex lg:flex-row lg:justify-center items-center gap-2 w-full flex-wrap">
 						<StatCard metric={Math.round(daysElapsed)} label={t("mixing")} />
 						<StatCard metric={Math.round(currentWeek)} label={t("curweek")} />
-						<StatCard metric={currentWeight.toFixed(2)} label={t("estweight")} />
-						<StatCard metric={currentHeight.toFixed(2)} label={t("estsize")} />
+						<StatCard metric={currentWeight.toFixed(2)} label={t("estweight")} unit="g" />
+						<StatCard metric={currentHeight.toFixed(2)} label={t("estsize")} unit="cm" />
 						<StatCard metric={getCellCount()} label={t("estcells")} />
 					</div>
 					<div className="flex flex-col gap-4 w-full">

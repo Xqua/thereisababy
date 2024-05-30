@@ -4,8 +4,8 @@
     "subtitle": "Baby compiling, Please wait...",
     "mixing": "Days since DNA mixing" ,
     "curweek": "Current Week",
-    "estweight": "Estimated Weight (in g)",
-    "estsize": "Estimated Size (in cm)",
+    "estweight": "Estimated Weight",
+    "estsize": "Estimated Size",
     "estcells": "Estimated number of cells"
   }
 }
