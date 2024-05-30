@@ -7,8 +7,8 @@ import { getLocale, getMessages } from "next-intl/server"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-	title: "SaraLeo Baby's Progress Tracker",
-	description: "A quirky progress tracker for SaraLeo's baby"
+	title: "Progress Tracker",
+	description: "Open up to see the surprise!"
 }
 
 export default async function RootLayout({
