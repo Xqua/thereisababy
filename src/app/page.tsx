@@ -2,7 +2,8 @@
 import { ProgressBar } from "@/components/progressbar"
 import { StatCard } from "@/components/statcard"
 import { Progress } from "@/components/ui/progress"
-import { progresses, statsTable } from "@/data/data"
+import { progresses, progressesFR, statsTable } from "@/data/data"
+import { useTranslations } from "next-intl"
 import { useCallback, useEffect, useState } from "react"
 
 function interpolate(week: number, value1: number, value2: number): number {
@@ -16,11 +17,13 @@ export default function Home() {
 	const [currentWeek, setCurrentWeek] = useState(0)
 	const [currentWeight, setCurrentWeight] = useState(0)
 	const [currentHeight, setCurrentHeight] = useState(0)
+	const [progressesData, setProgressesData] = useState(progresses)
+	const t = useTranslations("Home")
 
-	// const currentWeight = statsTable[Math.round(weeksElasped)].weight
-	// const nextWeight = statsTable[Math.round(weeksElasped) + 1].weight
-	// const currentHeight = statsTable[Math.round(weeksElasped)].height
-	// const nextHeight = statsTable[Math.round(weeksElasped) + 1].height
+	useEffect(() => {
+		const userLocale = navigator.language
+		setProgressesData(userLocale.includes("fr") ? progressesFR : progresses)
+	}, [])
 
 	const getCellCount = useCallback(() => {
 		let cellCount = currentWeight / 0.00000001
@@ -58,25 +61,25 @@ export default function Home() {
 		<main className="flex min-h-screen flex-col items-center justify-between p-4 lg:p-12 gap-4 bg-slate-200">
 			<div className="border-2 border-gray-300 shadow-md bg-white p-4 rounded-2xl">
 				<div className="flex flex-col items-center gap-4 w-full pb-12">
-					<h1 className="text-4xl font-bold text-center">SaraLeo baby&apos;s progress bar</h1>
+					<h1 className="text-4xl font-bold text-center">{t("title")}</h1>
 					<div className="relative items-center w-full">
 						<Progress value={(currentWeek / 40) * 100} className="h-8" />
 						<span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl font-bold text-center text-white">
 							{((currentWeek / 40) * 100).toFixed(2)}%
 						</span>
 					</div>
-					<h2 className="text-2xl font-bold text-center">Baby compiling ... Please wait</h2>
+					<h2 className="text-2xl font-bold text-center">{t("subtitle")}</h2>
 				</div>
 				<div className="flex flex-col items-center gap-4 w-full">
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:flex lg:flex-row lg:justify-center items-center gap-2 w-full flex-wrap">
-						<StatCard metric={Math.round(daysElapsed)} label="Days since DNA mixing" />
-						<StatCard metric={Math.round(currentWeek)} label="Current Week" />
-						<StatCard metric={currentWeight.toFixed(2)} label="Estimated Weight (in g)" />
-						<StatCard metric={currentHeight.toFixed(2)} label="Estimated Size (in cm)" />
-						<StatCard metric={getCellCount()} label="Estimated number of cells" />
+						<StatCard metric={Math.round(daysElapsed)} label={t("mixing")} />
+						<StatCard metric={Math.round(currentWeek)} label={t("curweek")} />
+						<StatCard metric={currentWeight.toFixed(2)} label={t("estweight")} />
+						<StatCard metric={currentHeight.toFixed(2)} label={t("estsize")} />
+						<StatCard metric={getCellCount()} label={t("estcells")} />
 					</div>
 					<div className="flex flex-col gap-4 w-full">
-						{progresses.map((progress, index) => (
+						{progressesData.map((progress, index) => (
 							<ProgressBar key={index} currentWeek={currentWeek} progress={progress} />
 						))}
 					</div>

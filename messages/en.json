@@ -1,0 +1,11 @@
+{
+  "Home": {
+    "title": "SaraLeo baby's progress bar",
+    "subtitle": "Baby compiling, Please wait...",
+    "mixing": "Days since DNA mixing" ,
+    "curweek": "Current Week",
+    "estweight": "Estimated Weight (in g)",
+    "estsize": "Estimated Size (in cm)",
+    "estcells": "Estimated number of cells"
+  }
+}
