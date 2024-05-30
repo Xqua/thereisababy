@@ -144,7 +144,7 @@ export const progresses = [
 	},
 	{
 		label: "Immune System Activated!",
-		inProgressLabel: "Immune Defense System Online...",
+		inProgressLabel: "Immune Defense System Loading...",
 		startWeek: 18,
 		endWeek: 20
 	},
