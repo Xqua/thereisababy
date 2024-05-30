@@ -4,7 +4,7 @@ import './App.css';
 import 'semantic-ui-css/semantic.min.css'
 import { Progress, Container, Header, Statistic } from 'semantic-ui-react'
 
-let conceptionDate = new Date('June 1, 2020 22:15:30');
+let conceptionDate = new Date('March 29, 2024 21:15:30');
 let now = Date.now();
 let timeElapsed = now - conceptionDate;
 let daysElapsed = timeElapsed / (1000 * 3600 * 24);

@@ -3,13 +3,14 @@ import './App.css';
 import 'semantic-ui-css/semantic.min.css'
 import { Progress, Container, Header, Statistic } from 'semantic-ui-react'
 
-let conceptionDate = new Date('June 1, 2020 22:15:30');
+let conceptionDate = new Date('March 15, 2024 20:15:30');
 
 // weight in gram
 // height in cm
 let statsTable = {
   0:  {weight: 0, height: 0},
   1:  {weight: 1, height: 1},
+  9:  {weight: 27, height: 2.30},
   10: {weight: 35, height: 3.2},
   11: {weight: 45, height: 4.2},
   12: {weight: 58, height: 5.3},
@@ -46,6 +47,7 @@ let statsTable = {
 }
 
 function interpolate(week, metric) {
+  console.log("Week", Math.round(week))
   const value1 = statsTable[Math.round(week)][metric];
   const value2 = statsTable[Math.round(week) + 1][metric];
   const value = value1 + (week - Math.round(week)) * ((value2 - value1) / ((Math.round(week) + 1) - Math.round(week)))
@@ -82,7 +84,7 @@ function App() {
           fontWeight: 'normal',
           marginBottom: 0,
         }}
-      >SaraFinn's Baby progress bar</Header>
+      >LeoSara's Baby progress bar</Header>
       <Progress percent={((weeksElasped/40) * 100).toFixed(5)} color='purple' size='big' progress/>
       <Header as="h2" style={{color: "white"}}>Baby is compiling... Please wait!</Header>
     </Container>
