@@ -2,7 +2,7 @@
 import { ProgressBar } from "@/components/progressbar"
 import { StatCard } from "@/components/statcard"
 import { Progress } from "@/components/ui/progress"
-import { progresses, progressesFR, statsTable } from "@/data/data"
+import { type ProgressType, progresses, progressesFR, statsTable } from "@/data/data"
 import { useTranslations } from "next-intl"
 import { useCallback, useEffect, useState } from "react"
 
@@ -19,11 +19,6 @@ export default function Home() {
 	const [currentHeight, setCurrentHeight] = useState(0)
 	const [progressesData, setProgressesData] = useState(progresses)
 	const t = useTranslations("Home")
-
-	useEffect(() => {
-		const userLocale = navigator.language
-		setProgressesData(userLocale.includes("fr") ? progressesFR : progresses)
-	}, [])
 
 	const getCellCount = useCallback(() => {
 		let cellCount = currentWeight / 0.00000001
@@ -56,6 +51,29 @@ export default function Home() {
 		}, 1000)
 		return () => clearInterval(interval)
 	}, [conceptionDate])
+
+	const sortProgresses = useCallback(
+		(a: ProgressType, b: ProgressType) => {
+			const percentA = Math.min(Math.max(0, ((currentWeek - a.startWeek) / (a.endWeek - a.startWeek)) * 100), 100)
+			const percentB = Math.min(Math.max(0, ((currentWeek - b.startWeek) / (b.endWeek - b.startWeek)) * 100), 100)
+
+			if (percentA < percentB) {
+				return 1
+			}
+			if (percentA > percentB) {
+				return -1
+			}
+			return 0
+		},
+		[currentWeek]
+	)
+
+	useEffect(() => {
+		const userLocale = navigator.language
+		const data = userLocale.includes("fr") ? progressesFR : progresses
+		const sortedData = data.sort(sortProgresses)
+		setProgressesData(sortedData)
+	}, [sortProgresses])
 
 	return (
 		<main className="flex min-h-screen flex-col items-center justify-between p-4 lg:p-12 gap-4 bg-slate-200">
