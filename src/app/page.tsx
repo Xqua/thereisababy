@@ -87,6 +87,7 @@ export default function Home() {
 						</span>
 					</div>
 					<h2 className="text-2xl font-bold text-center">{t("subtitle")}</h2>
+					<img src="/baby.jpeg" alt="Baby" className="w-1/2" />
 				</div>
 				<div className="flex flex-col items-center gap-4 w-full">
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:flex lg:flex-row lg:justify-center items-center gap-2 w-full flex-wrap">
