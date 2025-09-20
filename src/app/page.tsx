@@ -12,7 +12,7 @@ function interpolate(week: number, value1: number, value2: number): number {
 }
 
 export default function Home() {
-	const conceptionDate = new Date("March 15, 2024 21:15:30").getTime()
+	const conceptionDate = new Date("June 30, 2025 21:15:30").getTime()
 	const [daysElapsed, setDaysElapsed] = useState(0)
 	const [currentWeek, setCurrentWeek] = useState(0)
 	const [currentWeight, setCurrentWeight] = useState(0)
